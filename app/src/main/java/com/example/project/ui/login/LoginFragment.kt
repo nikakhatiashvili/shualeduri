@@ -2,31 +2,29 @@ package com.example.project.ui.login
 
 import android.os.Bundle
 import android.text.TextUtils
+import android.util.Log
+import android.util.Log.d
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.Toast
-import androidx.core.os.bundleOf
-import androidx.drawerlayout.widget.DrawerLayout
-import androidx.fragment.app.setFragmentResult
 import androidx.fragment.app.setFragmentResultListener
-import androidx.lifecycle.ViewModelProvider
+import androidx.lifecycle.lifecycleScope
 import androidx.navigation.fragment.findNavController
 import com.google.firebase.auth.FirebaseAuth
 import com.example.project.databinding.FragmentLoginBinding
+import com.example.project.datastore.UserManager
 import com.example.project.model.User
-import com.example.project.room.user.UserViewModel
-import com.example.project.room.user.UserViewModelFactory
-import com.example.project.ui.spray.SprayViewModel
-import com.example.project.ui.spray.WordViewModelFactory
-import com.google.android.material.navigation.NavigationBarView
+import kotlinx.coroutines.DelicateCoroutinesApi
+import kotlinx.coroutines.launch
 
 
 class LoginFragment :Fragment() {
     private var _binding: FragmentLoginBinding? = null
     private val binding get() = _binding!!
-
+    private lateinit var email:String
+    private lateinit var userManager:UserManager
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setFragmentResultListener("requestKeys") { requestKey, bundle ->
@@ -51,6 +49,9 @@ class LoginFragment :Fragment() {
     }
 
     private fun listener(){
+        userManager = UserManager(requireContext())
+        bind()
+
     }
 
 
@@ -68,7 +69,7 @@ class LoginFragment :Fragment() {
                     Toast.makeText(activity,"please enter password.", Toast.LENGTH_SHORT).show()
                 }
                 else -> {
-                    val email:String = binding.usernameEditTxt.text.toString().trim{ it <= ' '}
+                     email = binding.usernameEditTxt.text.toString().trim{ it <= ' '}
                     val password:String = binding.passwordEditTxt.text.toString().trim{ it <= ' '}
 
                     FirebaseAuth.getInstance().signInWithEmailAndPassword(email,password)
@@ -76,13 +77,19 @@ class LoginFragment :Fragment() {
                             if(task.isSuccessful){
                                 Toast.makeText(activity,"you are logged in successfully.", Toast.LENGTH_SHORT).show()
                                 val user = User(email)
-                                findNavController().navigate(com.example.project.R.id.action_loginFragment_to_nav_home)
+                                observer(userManager,user)
+                                findNavController().navigate(com.example.project.R.id.action_loginFragment_to_nav_gallery)
                             }else{
                                 Toast.makeText(activity,task.exception!!.message.toString(), Toast.LENGTH_SHORT).show()
                             }
                         }
                 }
             }
+        }
+    }
+    private fun observer(userManager: UserManager,user:User){
+        viewLifecycleOwner.lifecycleScope.launch {
+            userManager.saveToDataStore(user)
         }
     }
 }

@@ -12,13 +12,13 @@ import com.example.project.model.ranks.Player
 
 const val BASE_PHOTO = "https://media.valorant-api.com/competitivetiers/e4e9a692-288f-63ca-7835-16fbf6234fda/24/smallicon.png"
 const val BASE_THEME = "https://media.valorant-api.com/playercards/33c1f011-4eca-068c-9751-f68c788b2eee/displayicon.png"
-class RankAdapter : RecyclerView.Adapter<RecyclerView.ViewHolder>(){
-
-        var data:MutableList<Player> = mutableListOf()
-            set(value) {
-                field = value
-                notifyDataSetChanged()
-            }
+class RankAdapter(var data:List<Player>) : RecyclerView.Adapter<RecyclerView.ViewHolder>(){
+//
+//        var data:MutableList<Player> = mutableListOf()
+//            set(value) {
+//                field = value
+//                notifyDataSetChanged()
+//            }
     var nikaData = ArrayList<Player>()
 
         override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): RecyclerView.ViewHolder {
@@ -31,30 +31,34 @@ class RankAdapter : RecyclerView.Adapter<RecyclerView.ViewHolder>(){
         }
 
 
-//    fun filter(text: String) {
-//        var text = text
-//        data.clear()
-//        if (text.isEmpty()) {
-//            nikaData.addAll(data)
-//        } else {
-//            text = text.toLowerCase()
-//            for (item in data) {
-//                if (item.gameName?.toLowerCase()?.contains(text)!!) {
-//                    d("sdasdasd",item.gameName.toString())
-//                    nikaData.add(item)
-//                }
-//            }
-//            notifyDataSetChanged()
-//        }
-//        notifyDataSetChanged()
-//    }
+    fun filter(text: String) {
+        var text = text
+        nikaData.clear()
+        if (text.isEmpty()) {
+            nikaData.addAll(data)
+        } else {
+            text = text.toLowerCase()
+            for (item in data) {
+                if (item.gameName.isNullOrEmpty()){
+
+                }else{
+                if (item.gameName?.toLowerCase()?.contains(text)!!) {
+                    d("sdasdasd",item.gameName.toString())
+                    nikaData.add(item)
+                    }
+                }
+            }
+        }
+        notifyDataSetChanged()
+    }
 
         override fun getItemCount()=data.size
 
         inner class AgentViewHolder(private val binding: FragmentRankItemBinding): RecyclerView.ViewHolder(binding.root){
             private lateinit var currentData: Player
             fun bind(){
-                currentData = data[adapterPosition]
+                nikaData.addAll(data)
+                currentData = nikaData[adapterPosition]
                 binding.apply {
                     characterTxt.text = currentData.leaderboardRank.toString()
                     gamename.text = currentData.gameName.toString()

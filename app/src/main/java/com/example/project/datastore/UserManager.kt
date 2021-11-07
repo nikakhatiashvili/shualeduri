@@ -9,44 +9,28 @@ import androidx.datastore.preferences.core.stringPreferencesKey
 import androidx.datastore.preferences.preferencesDataStore
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.asLiveData
+import com.example.project.model.User
+import com.google.firebase.auth.UserInfo
 import kotlinx.coroutines.flow.map
 
-private val Context._dataStore: DataStore<Preferences> by preferencesDataStore("User_Info")
 
-class UserManager(context: Context?) {
-
-
-    private val dataStore: DataStore<Preferences> = context!!._dataStore
+private val Context._dataStore: DataStore<androidx.datastore.preferences.core.Preferences> by preferencesDataStore("User_Info")
+class UserManager(private val context: Context) {
+    private val dataStore: DataStore<androidx.datastore.preferences.core.Preferences> = context!!._dataStore
 
     companion object {
-
-        val USER_EMAIL_KEY = stringPreferencesKey("EMAIL")
-
+        val EMAIL = stringPreferencesKey("EMAIL_KEY")
     }
 
 
-    //Store user data
-    suspend fun storeUser(
-        email: String,
-    ) {
+    suspend fun saveToDataStore(userInfo: User) {
         dataStore.edit {
-            it[USER_EMAIL_KEY] = email
+            it[EMAIL] = userInfo.email
         }
     }
-    private fun isLogin(): String? {
-        return  email.value
-    }
-
-
-    private fun getSession():String?{
-        return  email.value
-    }
-
-
-    var email: LiveData<String> = dataStore.data.map {
-        it[USER_EMAIL_KEY] ?: "null"
+    suspend fun getFromDataStore() = dataStore.data.map {
+        User(
+            email = it[EMAIL] ?: "",
+        )
     }.asLiveData()
-
-
-
 }
