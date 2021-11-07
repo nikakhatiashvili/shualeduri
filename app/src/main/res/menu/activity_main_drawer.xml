@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    tools:showIn="navigation_view">
+
+    <group android:checkableBehavior="single">
+        <item
+            android:id="@+id/nav_home"
+            android:icon="@drawable/ic_menu_camera"
+            android:title="@string/menu_home" />
+        <item
+            android:id="@+id/nav_gallery"
+            android:icon="@drawable/ic_baseline_person_24"
+            android:title="@string/agents" />
+        <item
+            android:id="@+id/nav_slideshow"
+            android:icon="@drawable/ic_gun_weapons_svgrepo_com"
+            android:title="@string/weapons" />
+        <item
+            android:id="@+id/mapFragment"
+            android:icon="@drawable/ic_map_svgrepo_com"
+            android:title="Maps" />
+        <item
+            android:id="@+id/sprayFragment"
+            android:icon="@drawable/ic_spray_svgrepo_com"
+            android:title="Spray" />
+        <item
+            android:id="@+id/rankFragment"
+            android:icon="@drawable/ic_rank_svgrepo_com"
+            android:title="Player Ratings" />
+        <item
+            android:id="@+id/favoriteFragment"
+            android:icon="@drawable/ic_baseline_favorite_24"
+            android:title="Favorites" />
+    </group>
+</menu>
