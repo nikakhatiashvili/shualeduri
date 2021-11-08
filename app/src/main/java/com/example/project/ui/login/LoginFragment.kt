@@ -9,9 +9,12 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.Toast
+import android.widget.Toolbar
+import androidx.appcompat.app.AppCompatActivity
 import androidx.fragment.app.setFragmentResultListener
 import androidx.lifecycle.lifecycleScope
 import androidx.navigation.fragment.findNavController
+import com.example.project.MainActivity
 import com.google.firebase.auth.FirebaseAuth
 import com.example.project.databinding.FragmentLoginBinding
 import com.example.project.datastore.UserManager
@@ -35,6 +38,7 @@ class LoginFragment :Fragment() {
             val pass = bundle.getString("passKeys")
             binding.passwordEditTxt.setText(pass.toString())
         }
+
     }
     override fun onCreateView(
         inflater: LayoutInflater,
@@ -51,7 +55,9 @@ class LoginFragment :Fragment() {
     private fun listener(){
         userManager = UserManager(requireContext())
         bind()
-
+       val actionBar = activity?.actionBar
+        actionBar?.hide()
+        activity?.actionBar?.hide()
     }
 
 

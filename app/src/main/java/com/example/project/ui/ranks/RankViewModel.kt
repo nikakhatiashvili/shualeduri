@@ -5,10 +5,10 @@ import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.example.project.model.ranks.Player
+import com.example.project.network.api.ApiService
 
-import com.example.project.network.officialapi.OfficialApiService
+
 import kotlinx.coroutines.Dispatchers
-import kotlinx.coroutines.delay
 import kotlinx.coroutines.launch
 import kotlinx.coroutines.withContext
 
@@ -21,15 +21,13 @@ class RankViewModel: ViewModel() {
 
 
         fun load(){
-
                 viewModelScope.launch {
                     val data = withContext(Dispatchers.IO){
-                        OfficialApiService.agentService.getAllCharacters()
+                        ApiService.rankService.getAllRanks()
                     }
                     _rankInfo.postValue(data.body()?.players!!)
                 }
             }
-
         }
 
 
