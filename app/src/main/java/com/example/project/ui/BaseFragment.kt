@@ -8,10 +8,9 @@ import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.ViewModelProvider
 import androidx.viewbinding.ViewBinding
-import com.example.project.ui.gallery.GalleryViewModel
+
 
 typealias Inflate<T> = (LayoutInflater, ViewGroup?, Boolean) -> T
-
 
 abstract class BaseFragment<VB: ViewBinding,VM: ViewModel>
     (private val inflate: Inflate<VB>, viewModel: Class<VM> ): Fragment() {

@@ -14,23 +14,23 @@ import com.google.firebase.auth.UserInfo
 import kotlinx.coroutines.flow.map
 
 
-private val Context._dataStore: DataStore<androidx.datastore.preferences.core.Preferences> by preferencesDataStore("User_Info")
-class UserManager(private val context: Context) {
-    private val dataStore: DataStore<androidx.datastore.preferences.core.Preferences> = context!!._dataStore
-
-    companion object {
-        val EMAIL = stringPreferencesKey("EMAIL_KEY")
-    }
-
-
-    suspend fun saveToDataStore(userInfo: User) {
-        dataStore.edit {
-            it[EMAIL] = userInfo.email
-        }
-    }
-    suspend fun getFromDataStore() = dataStore.data.map {
-        User(
-            email = it[EMAIL] ?: "",
-        )
-    }.asLiveData()
-}
+//private val Context._dataStore: DataStore<androidx.datastore.preferences.core.Preferences> by preferencesDataStore("User_Info")
+//class UserManager(private val context: Context) {
+//    private val dataStore: DataStore<androidx.datastore.preferences.core.Preferences> = context!!._dataStore
+//
+//    companion object {
+//        val EMAIL = stringPreferencesKey("EMAIL_KEY")
+//    }
+//
+//
+//    suspend fun saveToDataStore(userInfo: User) {
+//        dataStore.edit {
+//            it[EMAIL] = userInfo.email
+//        }
+//    }
+//    suspend fun getFromDataStore() = dataStore.data.map {
+//        User(
+//            email = it[EMAIL] ?: "",
+//        )
+//    }.asLiveData()
+//}

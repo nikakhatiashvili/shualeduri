@@ -14,8 +14,7 @@ import kotlinx.coroutines.withContext
 
 class RankViewModel: ViewModel() {
 
-        //    private var _characters = MutableLiveData<List<Agents>>()
-//    val characters: LiveData<List<Agents>> get() = _characters
+
         private var _rankInfo = MutableLiveData<List<Player>>()
         val rankInfo: LiveData<List<Player>> get() = _rankInfo
 

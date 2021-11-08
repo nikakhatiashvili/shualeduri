@@ -3,12 +3,13 @@ package com.example.project.ui.ranks
 import android.util.Log.d
 import android.view.LayoutInflater
 import android.view.ViewGroup
-import android.widget.ImageButton
+
 import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
-import com.example.project.R
 import com.example.project.databinding.FragmentRankItemBinding
 import com.example.project.model.ranks.Player
+import java.util.*
+import kotlin.collections.ArrayList
 
 const val BASE_PHOTO = "https://media.valorant-api.com/competitivetiers/e4e9a692-288f-63ca-7835-16fbf6234fda/24/smallicon.png"
 const val BASE_THEME = "https://media.valorant-api.com/playercards/33c1f011-4eca-068c-9751-f68c788b2eee/displayicon.png"
@@ -37,12 +38,12 @@ class RankAdapter(var data:List<Player>) : RecyclerView.Adapter<RecyclerView.Vie
         if (text.isEmpty()) {
             nikaData.addAll(data)
         } else {
-            text = text.toLowerCase()
+            text = text.lowercase(Locale.getDefault())
             for (item in data) {
                 if (item.gameName.isNullOrEmpty()){
 
                 }else{
-                if (item.gameName?.toLowerCase()?.contains(text)!!) {
+                if (item.gameName.lowercase(Locale.getDefault()).contains(text)) {
                     d("sdasdasd",item.gameName.toString())
                     nikaData.add(item)
                     }

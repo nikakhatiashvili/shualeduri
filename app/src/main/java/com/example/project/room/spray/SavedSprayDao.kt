@@ -2,7 +2,7 @@ package com.example.project.room.spray
 
 import androidx.lifecycle.LiveData
 import androidx.room.*
-import com.example.project.model.User
+
 import com.example.project.model.saved.SavedSprays
 
 

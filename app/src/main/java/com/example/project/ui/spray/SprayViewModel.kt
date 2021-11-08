@@ -47,28 +47,6 @@ class SprayViewModel(application: Application):ViewModel() {
             repository.delete()
         }
     }
-
-//    fun getMoviesFromDataBase(){
-//        viewModelScope.launch {
-//            val data = withContext(Dispatchers.IO){
-//                DataInit.db.savedMoviesDao().getAll()
-//            }
-//            _savedMovies.postValue(data)
-//            currentMovie.value?.let { checker(it) }
-//        }
-//    }
-//    fun checker(sprays: SavedSprays){
-//        _savedInfo.postValue(sprays)
-//    }
-//
-//    fun addSpray(savedSpray:SavedSprays){
-//        viewModelScope.launch {
-//            withContext(Dispatchers.IO){
-//                DataInit.db.savedSpray().insert(savedSpray)
-//            }
-//            checker(_savedInfo.value!!)
-//        }
-//    }
 }
 class WordViewModelFactory(private val application: Application ) : ViewModelProvider.Factory {
     override fun <T : ViewModel> create(modelClass: Class<T>): T {

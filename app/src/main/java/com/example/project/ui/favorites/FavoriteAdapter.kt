@@ -2,16 +2,10 @@ package com.example.project.ui.favorites
 
 import android.util.Log.d
 import android.view.LayoutInflater
-import android.view.View
 import android.view.ViewGroup
-import android.widget.Adapter
-import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
-import com.example.project.R
 import com.example.project.databinding.FragmentFavoriteItemBinding
-import com.example.project.databinding.MapItemBinding
-import com.example.project.model.maps.MapData
 import com.example.project.model.saved.SavedSprays
 
 class FavoriteAdapter(): RecyclerView.Adapter<RecyclerView.ViewHolder>(){

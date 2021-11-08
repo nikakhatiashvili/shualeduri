@@ -4,9 +4,7 @@ import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
-import com.example.project.databinding.AgentItemBinding
 import com.example.project.databinding.MapItemBinding
-import com.example.project.model.agents.Data
 import com.example.project.model.maps.MapData
 
 class MapAdapter(): RecyclerView.Adapter<RecyclerView.ViewHolder>(){

@@ -2,16 +2,13 @@ package com.example.project.ui.favorites
 
 import android.os.Bundle
 import android.util.Log.d
-import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import androidx.fragment.app.viewModels
+import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.GridLayoutManager
-import com.example.project.R
 import com.example.project.databinding.FragmentFavoriteBinding
-import com.example.project.ui.maps.MapAdapter
 import com.example.project.ui.spray.SprayViewModel
 import com.example.project.ui.spray.WordViewModelFactory
 

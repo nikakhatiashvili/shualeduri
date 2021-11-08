@@ -3,7 +3,6 @@ package com.example.project.ui.maps
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.GridLayoutManager
-import com.example.project.databinding.FragmentGalleryBinding
 import com.example.project.databinding.FragmentMapBinding
 import com.example.project.ui.BaseFragment
 
