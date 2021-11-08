@@ -9,6 +9,7 @@ import android.widget.ImageButton
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.GridLayoutManager
+import com.example.project.R
 import com.example.project.callback.ClickListenerForSave
 import com.example.project.databinding.FragmentSprayBinding
 import com.example.project.model.saved.SavedSprays
@@ -41,6 +42,7 @@ class SprayFragment : Fragment() {
     private fun bind(){
         adapter = SprayAdapter(object :ClickListenerForSave{
             override fun onClick(data: String,image:String,imgbtn:ImageButton) {
+                imgbtn.setImageResource(R.drawable.ic_heart_red_svgrepo_com__1_)
                 val info = SavedSprays(data,image)
                 d("counter",counter.toString())
                 counter = counter + 1
